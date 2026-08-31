@@ -50,8 +50,9 @@ export default function UploadPage({ onAnalysisComplete }: UploadPageProps) {
       onAnalysisComplete(report, resume, job);
       navigate('/results');
     } catch (err: any) {
-      console.error('Analysis failed:', err);
-      setError(err.response?.data?.message || 'Analysis failed. Make sure the backend is running on port 8080.');
+      console.error('Analysis error details:', err);
+      const detail = err.response?.data?.message || err.response?.statusText || err.message || 'Network error connecting to backend.';
+      setError(`Analysis failed (${err.response?.status || 'Connection Error'}): ${detail}`);
     } finally {
       setLoading(false);
     }

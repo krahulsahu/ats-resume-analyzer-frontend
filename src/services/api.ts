@@ -2,10 +2,14 @@ import axios from 'axios';
 import type { ResumeDTO, JobDTO, AtsReportDTO, SuggestionDTO } from '../types';
 
 // Base API client with Basic Auth (configurable via VITE_API_URL in production/Vercel)
-const apiBaseUrl = (import.meta as any).env?.VITE_API_URL || 'http://localhost:8080/api';
+let rawBaseUrl = (import.meta as any).env?.VITE_API_URL || 'http://localhost:8080/api';
+rawBaseUrl = rawBaseUrl.trim().replace(/\/+$/, '');
+if (!rawBaseUrl.endsWith('/api')) {
+  rawBaseUrl += '/api';
+}
 
 const api = axios.create({
-  baseURL: apiBaseUrl,
+  baseURL: rawBaseUrl,
   auth: {
     username: 'admin',
     password: 'admin123',
