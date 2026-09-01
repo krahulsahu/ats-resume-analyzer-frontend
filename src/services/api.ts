@@ -1,12 +1,23 @@
 import axios from 'axios';
 import type { ResumeDTO, JobDTO, AtsReportDTO, SuggestionDTO } from '../types';
 
-// Base API client with Basic Auth (configurable via VITE_API_URL in production/Vercel)
-let rawBaseUrl = (import.meta as any).env?.VITE_API_URL || 'http://localhost:8080/api';
+// Default live backend URL for production
+const DEFAULT_PROD_URL = 'https://ats-resume-analyzer-backend-57wv.onrender.com/api';
+const DEFAULT_DEV_URL = 'http://localhost:8080/api';
+
+// Select base URL: environment variable -> or fallback based on production/development mode
+let rawBaseUrl = (import.meta as any).env?.VITE_API_URL;
+
+if (!rawBaseUrl || rawBaseUrl.trim() === '') {
+  rawBaseUrl = (import.meta as any).env?.PROD ? DEFAULT_PROD_URL : DEFAULT_DEV_URL;
+}
+
 rawBaseUrl = rawBaseUrl.trim().replace(/\/+$/, '');
 if (!rawBaseUrl.endsWith('/api')) {
   rawBaseUrl += '/api';
 }
+
+console.log('🚀 ATS Analyzer API Base URL:', rawBaseUrl);
 
 const api = axios.create({
   baseURL: rawBaseUrl,
