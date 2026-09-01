@@ -62,26 +62,26 @@ export async function calculateAtsScore(resume: ResumeDTO, job: JobDTO): Promise
 }
 
 /**
- * Generate AI-improved professional summary.
+ * Generate AI-improved professional summary via Google Gemini 1.5 Flash.
  */
-export async function improveSummary(resume: ResumeDTO, job: JobDTO): Promise<string> {
-  const response = await api.post<{ summary: string }>('/ai/summary', { resume, job });
+export async function improveSummary(resume: ResumeDTO, job: JobDTO, apiKey?: string): Promise<string> {
+  const response = await api.post<{ summary: string }>('/ai/summary', { resume, job, apiKey });
   return response.data.summary;
 }
 
 /**
- * Generate full AI improvement suggestions.
+ * Generate full AI improvement suggestions via Google Gemini 1.5 Flash.
  */
-export async function generateSuggestions(resume: ResumeDTO, job: JobDTO): Promise<SuggestionDTO> {
-  const response = await api.post<SuggestionDTO>('/ai/improve', { resume, job });
+export async function generateSuggestions(resume: ResumeDTO, job: JobDTO, apiKey?: string): Promise<SuggestionDTO> {
+  const response = await api.post<SuggestionDTO>('/ai/improve', { resume, job, apiKey });
   return response.data;
 }
 
 /**
- * Download ATS-friendly resume PDF.
+ * Download ATS-friendly resume PDF with specific template selection.
  */
-export async function downloadPdf(resume: ResumeDTO, suggestions?: SuggestionDTO): Promise<Blob> {
-  const response = await api.post('/ats/pdf', { resume, suggestions }, {
+export async function downloadPdf(resume: ResumeDTO, suggestions?: SuggestionDTO, template: string = 'modern'): Promise<Blob> {
+  const response = await api.post('/ats/pdf', { resume, suggestions, template }, {
     responseType: 'blob',
   });
   return response.data;

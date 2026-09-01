@@ -31,6 +31,9 @@ export default function Navbar() {
         <Link to="/results" className={`navbar-link ${isActive('/results') ? 'active' : ''}`}>
           Results
         </Link>
+        <Link to="/optimize" className={`navbar-link ${isActive('/optimize') ? 'active' : ''}`}>
+          ✨ 100% Optimizer
+        </Link>
         <Link to="/dashboard" className={`navbar-link ${isActive('/dashboard') ? 'active' : ''}`}>
           Dashboard
         </Link>

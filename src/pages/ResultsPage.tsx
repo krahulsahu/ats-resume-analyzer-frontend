@@ -373,15 +373,18 @@ export default function ResultsPage({ report, resume, job }: ResultsPageProps) {
 
         {/* Action Buttons */}
         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <button className="btn-primary" onClick={handleDownloadPdf} disabled={pdfLoading}>
-            {pdfLoading ? (
-              <>
-                <div className="spinner" style={{ width: 16, height: 16, borderWidth: 2 }} />
-                Generating PDF...
-              </>
-            ) : (
-              '📥 Download ATS Resume PDF'
-            )}
+          <button
+            className="btn-primary"
+            onClick={() => navigate('/optimize')}
+            style={{
+              background: 'linear-gradient(135deg, #10b981, #06b6d4, #6366f1)',
+              padding: '12px 32px', fontSize: '15px', fontWeight: 700,
+            }}
+          >
+            ✨ Open 100% Score Optimizer Studio
+          </button>
+          <button className="btn-secondary" onClick={handleDownloadPdf} disabled={pdfLoading}>
+            {pdfLoading ? 'Generating PDF...' : '📥 Download ATS Resume PDF'}
           </button>
           <button className="btn-secondary" onClick={() => navigate('/dashboard')}>
             📊 View Dashboard
