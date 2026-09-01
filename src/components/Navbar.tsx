@@ -29,10 +29,10 @@ export default function Navbar() {
           Upload
         </Link>
         <Link to="/results" className={`navbar-link ${isActive('/results') ? 'active' : ''}`}>
-          Results
+          Report
         </Link>
-        <Link to="/optimize" className={`navbar-link ${isActive('/optimize') ? 'active' : ''}`}>
-          ✨ 100% Optimizer
+        <Link to="/studio" className={`navbar-link ${isActive('/studio') || isActive('/optimize') ? 'active' : ''}`}>
+          ⚡ Resume Studio
         </Link>
         <Link to="/dashboard" className={`navbar-link ${isActive('/dashboard') ? 'active' : ''}`}>
           Dashboard

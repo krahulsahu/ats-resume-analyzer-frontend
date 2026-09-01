@@ -375,13 +375,13 @@ export default function ResultsPage({ report, resume, job }: ResultsPageProps) {
         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
           <button
             className="btn-primary"
-            onClick={() => navigate('/optimize')}
+            onClick={() => navigate('/studio')}
             style={{
               background: 'linear-gradient(135deg, #10b981, #06b6d4, #6366f1)',
               padding: '12px 32px', fontSize: '15px', fontWeight: 700,
             }}
           >
-            ✨ Open 100% Score Optimizer Studio
+            ⚡ Open Resume Studio (Live A4 Editor)
           </button>
           <button className="btn-secondary" onClick={handleDownloadPdf} disabled={pdfLoading}>
             {pdfLoading ? 'Generating PDF...' : '📥 Download ATS Resume PDF'}

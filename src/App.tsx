@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import UploadPage from './pages/UploadPage';
 import ResultsPage from './pages/ResultsPage';
 import DashboardPage from './pages/DashboardPage';
-import OptimizePage from './pages/OptimizePage';
+import ResumeStudioPage from './pages/ResumeStudioPage';
 import type { AtsReportDTO, ResumeDTO, JobDTO } from './types';
 import './index.css';
 
@@ -31,7 +31,8 @@ function App() {
         <Routes>
           <Route path="/" element={<UploadPage onAnalysisComplete={handleAnalysisComplete} />} />
           <Route path="/results" element={<ResultsPage report={report} resume={resume} job={job} />} />
-          <Route path="/optimize" element={<OptimizePage report={report} resume={resume} job={job} onUpdateResume={handleUpdateResume} />} />
+          <Route path="/studio" element={<ResumeStudioPage report={report} resume={resume} job={job} onUpdateResume={handleUpdateResume} />} />
+          <Route path="/optimize" element={<ResumeStudioPage report={report} resume={resume} job={job} onUpdateResume={handleUpdateResume} />} />
           <Route path="/dashboard" element={<DashboardPage report={report} />} />
         </Routes>
       </main>
